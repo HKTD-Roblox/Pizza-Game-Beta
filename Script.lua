@@ -1,45 +1,206 @@
 --Script By HKTD, TikTok: https://www.tiktok.com/@hktd_roblox
 
 local Players = game:GetService("Players")
-local LocalPlayer = Players.LocalPlayer
-local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local RunService = game:GetService("RunService")
-local GodMode = false
-local KillAll = false
-local Library = loadstring(game:HttpGet(("https://raw.githubusercontent.com/theneutral0ne/wally-modified/refs/heads/main/wally-modified.lua")))()
-local Window = Library:CreateWindow('Pizza Game Script')
-Window:Toggle("God Mode", {}, function(value)
-    GodMode = value
-end)
-Window:Toggle("Kill All", {}, function(value)
-    KillAll = value
-    if KillAll then
-        for _,v in workspace:GetChildren() do
-            if v:GetAttribute("State") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-                ReplicatedStorage.Packages["_Index"]["sleitnick_net@0.1.0"]["net"]["RF/Damage"]:InvokeServer(v,v.Humanoid.Health)
-            end
-        end
+local TweenService = game:GetService("TweenService")
+local player = Players.LocalPlayer
+
+-- 🌌 INTRO GUI
+local gui = Instance.new("ScreenGui")
+gui.Name = "Intro"
+gui.IgnoreGuiInset = true
+gui.ResetOnSpawn = false
+gui.Parent = player:WaitForChild("PlayerGui")
+
+-- Light Dark Background
+local bg = Instance.new("Frame")
+bg.Size = UDim2.new(1,0,1,0)
+bg.BackgroundColor3 = Color3.fromRGB(0,0,0)
+bg.BackgroundTransparency = 0.3
+bg.Parent = gui
+
+-- Logo Image
+local logo = Instance.new("ImageLabel")
+logo.Parent = gui
+logo.AnchorPoint = Vector2.new(0.5,0.5)
+logo.Position = UDim2.new(0.5,0,0.5,0)
+logo.Size = UDim2.new(0,0,0,0) -- bắt đầu nhỏ rồi zoom
+logo.BackgroundTransparency = 1
+logo.Image = "http://www.roblox.com/asset/?id=77111304194141"
+logo.ImageTransparency = 1
+
+-- Show Logo (Zoom + Fade In)
+TweenService:Create(logo, TweenInfo.new(1.5, Enum.EasingStyle.Elastic, Enum.EasingDirection.Out), {
+    Size = UDim2.new(0,200,0,200),
+    ImageTransparency = 0
+}):Play()
+
+-- Rotate Logo
+task.spawn(function()
+    while logo.Parent do
+        logo.Rotation = logo.Rotation + 0.5
+        task.wait(0.01)
     end
 end)
 
-Character.Humanoid.HealthChanged:Connect(function()
-    if GodMode then
-        ReplicatedStorage.Packages["_Index"]["sleitnick_net@0.1.0"]["net"]["RE/Damage"]:FireServer(Character,-1)
-    end
+-- Text Below The Logo
+local msg = Instance.new("TextLabel")
+msg.Parent = gui
+msg.AnchorPoint = Vector2.new(0.5,0)
+msg.Position = UDim2.new(0.5,0,0.75,0)
+msg.Size = UDim2.new(0,600,0,80)
+msg.BackgroundTransparency = 1
+msg.Text = "Grai Hub"
+msg.TextColor3 = Color3.fromRGB(0,255,255)
+msg.Font = Enum.Font.GothamBlack
+msg.TextScaled = true
+msg.TextStrokeTransparency = 0
+msg.TextStrokeColor3 = Color3.fromRGB(0,0,0)
+msg.TextTransparency = 1
+
+-- The Word Fade In
+TweenService:Create(msg, TweenInfo.new(1.2), {TextTransparency=0}):Play()
+
+-- Hold Intro For 5 Seconds
+task.wait(5)
+
+-- Fade Out All
+TweenService:Create(logo, TweenInfo.new(1.2), {ImageTransparency=1}):Play()
+TweenService:Create(msg, TweenInfo.new(1.2), {TextTransparency=1}):Play()
+TweenService:Create(bg, TweenInfo.new(1.2), {BackgroundTransparency=1}):Play()
+task.wait(1.5)
+
+gui:Destroy()
+
+------------------------------------------------------------
+-- 🎛 MAIN UI BUTTON
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+local ImageButton = Instance.new("ImageButton")
+ImageButton.Parent = ScreenGui
+ImageButton.BackgroundColor3 = Color3.fromRGB(0,0,0)
+ImageButton.BorderSizePixel = 0
+ImageButton.Position = UDim2.new(0.1,0,0.15,0)
+ImageButton.Size = UDim2.new(0,40,0,40)
+ImageButton.Draggable = true
+ImageButton.Image = "http://www.roblox.com/asset/?id=77111304194141"
+
+local UICorner = Instance.new("UICorner")
+UICorner.Parent = ImageButton
+UICorner.CornerRadius = UDim.new(1,10)
+
+ImageButton.MouseButton1Down:Connect(function()
+    game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.End,false,game)
 end)
 
-LocalPlayer.CharacterAdded:Connect(function(Character)
-    Character.Humanoid.HealthChanged:Connect(function()
-        if GodMode then
-            ReplicatedStorage.Packages["_Index"]["sleitnick_net@0.1.0"]["net"]["RE/Damage"]:FireServer(Character,-1)
-        end
-    end)
-end)
+------------------------------------------------------------
+-- 📦 LOAD FLUENT
+repeat task.wait() until game:IsLoaded()
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 
-workspace.ChildAdded:Connect(function(Child)
-    task.wait(1)
-    if KillAll and Child:GetAttribute("State") and Child:FindFirstChild("Humanoid") and Child.Humanoid.Health > 0 then
-        ReplicatedStorage.Packages["_Index"]["sleitnick_net@0.1.0"]["net"]["RF/Damage"]:InvokeServer(Child,Child.Humanoid.Health)
+local Window = Fluent:CreateWindow({
+    Title="HKTD Script | Beta",
+    SubTitle="Tổng Hợp Script",
+    TabWidth=157,
+    Size=UDim2.fromOffset(450,300),
+    Acrylic=true,
+    Theme="Dark",
+    MinimizeKey=Enum.KeyCode.End
+})
+
+-- Tabs
+local Tabs = {
+    Main0=Window:AddTab({Title="Info"}),
+    Main1=Window:AddTab({Title="Blox Fruits"}),
+    Main2=Window:AddTab({Title="Forsaken"}),
+    Main3=Window:AddTab({Title="Universal"})
+}
+
+-- Tab Info
+Tabs.Main0:AddButton({
+    Title="TikTok",
+    Description="HKTD",
+    Callback=function()
+        setclipboard("https://www.tiktok.com/@hktd_roblox")
     end
-end)
+})
+abs.Main0:AddButton({
+    Title="Discord",
+    Description="HKTD | COMMUNITY",
+    Callback=function()
+        setclipboard("https://discord.gg/RNgyh8MhxN")
+    end
+})
+
+-- Tab 1: Blox Fruits
+Tabs.Main1:AddButton({
+    Title="HKTD Hub",
+    Callback=function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Blox-Fruits/refs/heads/main/HKTD-Hub.lua"))
+    end
+})
+Tabs.Main1:AddButton({
+    Title="Nagi Hub",
+    Callback=function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Blox-Fruits/refs/heads/main/Nagi-Hub.lua"))()
+    end
+})
+Tabs.Main1:AddButton({
+    Title="TD Hub",
+    Callback=function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Blox-Fruits/refs/heads/main/TD-Hub.lua"))()
+    end
+})
+
+-- Tab Foraken
+Tabs.Main2:AddButton({
+    Title="HKTD Hub",
+    Callback=function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Forsaken-Script/refs/heads/main/HKTD-Hub.lua"))()
+    end
+})
+Tabs.Main2:AddButton({
+    Title="Auto Backstab V1",
+    Callback=function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Forsaken-Script/refs/heads/main/Auto-Backstab-V1.lua))()
+    end
+})
+Tabs.Main2:AddButton({
+    Title="Auto Backstab V2",
+    Callback=function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Forsaken-Script/refs/heads/main/Auto-Backstab-V2.lua"))()
+    end
+})
+Tabs.Main2:AddButton({
+    Title="Auto Backstab V3",
+    Callback=function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Forsaken-Script/refs/heads/main/Auto-Backstab-V3.lua"))()
+    end
+})
+
+-- Tab Universal
+Tabs.Main3:AddButton({
+    Title="Wall Hop V1",
+    Callback=function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Universal-Script/refs/heads/main/Wall-Hop-V1.lua))()
+    end
+})
+Tabs.Main3:AddButton({
+    Title="Wall Hop V2",
+    Callback=function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Universal-Script/refs/heads/main/Wall-Hop-V2.lua))()
+    end
+})
+Tabs.Main3:AddButton({
+    Title="Wall Hop V3",
+    Callback=function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Universal-Script/refs/heads/main/Wall-Hop-V3.lua))()
+    end
+})
+Tabs.Main3:AddButton({
+    Title="Wall Hop V4",
+    Callback=function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Universal-Script/refs/heads/main/Wall-Hop-V4.lua))()
+    end
+})
