@@ -60,8 +60,8 @@ msg.TextTransparency = 1
 -- The Word Fade In
 TweenService:Create(msg, TweenInfo.new(1.2), {TextTransparency=0}):Play()
 
--- Hold Intro For 5 Seconds
-task.wait(5)
+-- Hold Intro For 4 Seconds
+task.wait(4)
 
 -- Fade Out All
 TweenService:Create(logo, TweenInfo.new(1.2), {ImageTransparency=1}):Play()
