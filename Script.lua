@@ -25,7 +25,7 @@ logo.AnchorPoint = Vector2.new(0.5,0.5)
 logo.Position = UDim2.new(0.5,0,0.5,0)
 logo.Size = UDim2.new(0,0,0,0)
 logo.BackgroundTransparency = 1
-logo.Image = "http://www.roblox.com/asset/?id=123653870026944"
+logo.Image = "rbxassetid://84167712411424"
 logo.ImageTransparency = 1
 
 -- Show Logo (Zoom + Fade In)
@@ -84,7 +84,7 @@ ImageButton.BorderSizePixel = 0
 ImageButton.Position = UDim2.new(0.1,0,0.15,0)
 ImageButton.Size = UDim2.new(0,40,0,40)
 ImageButton.Draggable = true
-ImageButton.Image = "http://www.roblox.com/asset/?id=123653870026944"
+ImageButton.Image = "rbxassetid://84167712411424"
 
 local UICorner = Instance.new("UICorner")
 UICorner.Parent = ImageButton
@@ -100,8 +100,8 @@ repeat task.wait() until game:IsLoaded()
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 
 local Window = Fluent:CreateWindow({
-    Title="HKTD Script | Beta",
-    SubTitle="Tổng Hợp Script",
+    Title="HKTD Script Beta",
+    SubTitle="By HKTD",
     TabWidth=157,
     Size=UDim2.fromOffset(450,300),
     Acrylic=true,
@@ -137,19 +137,19 @@ Tabs.Main0:AddButton({
 Tabs.Main1:AddButton({
     Title="HKTD Hub",
     Callback=function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Blox-Fruits/refs/heads/main/HKTD-Hub.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Blox-Fruits/refs/heads/main/HKTD-Hub.lua", true))()
     end
 })
 Tabs.Main1:AddButton({
     Title="Nagi Hub",
     Callback=function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Blox-Fruits/refs/heads/main/Nagi-Hub.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Blox-Fruits/refs/heads/main/Nagi-Hub.lua", true))()
     end
 })
 Tabs.Main1:AddButton({
     Title="TD Hub",
     Callback=function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Blox-Fruits/refs/heads/main/TD-Hub.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Blox-Fruits/refs/heads/main/TD-Hub.lua", true))()
     end
 })
 
@@ -157,25 +157,25 @@ Tabs.Main1:AddButton({
 Tabs.Main2:AddButton({
     Title="HKTD Hub",
     Callback=function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Forsaken-Script/refs/heads/main/HKTD-Hub.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Forsaken-Script/refs/heads/main/HKTD-Hub.lua", true))()
     end
 })
 Tabs.Main2:AddButton({
     Title="Auto Backstab V1",
     Callback=function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Forsaken-Script/refs/heads/main/Auto-Backstab-V1.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Forsaken-Script/refs/heads/main/Auto-Backstab-V1.lua", true))()
     end
 })
 Tabs.Main2:AddButton({
     Title="Auto Backstab V2",
     Callback=function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Forsaken-Script/refs/heads/main/Auto-Backstab-V2.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Forsaken-Script/refs/heads/main/Auto-Backstab-V2.lua", true))()
     end
 })
 Tabs.Main2:AddButton({
     Title="Auto Backstab V3",
     Callback=function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Forsaken-Script/refs/heads/main/Auto-Backstab-V3.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Forsaken-Script/refs/heads/main/Auto-Backstab-V3.lua", true))()
     end
 })
 
@@ -183,24 +183,24 @@ Tabs.Main2:AddButton({
 Tabs.Main3:AddButton({
     Title="Wall Hop V1",
     Callback=function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Universal-Script/refs/heads/main/Wall-Hop-V1.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Universal-Script/refs/heads/main/Wall-Hop-V1.lua", true))()
     end
 })
 Tabs.Main3:AddButton({
     Title="Wall Hop V2",
     Callback=function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Universal-Script/refs/heads/main/Wall-Hop-V2.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Universal-Script/refs/heads/main/Wall-Hop-V2.lua", true))()
     end
 })
 Tabs.Main3:AddButton({
     Title="Wall Hop V3",
     Callback=function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Universal-Script/refs/heads/main/Wall-Hop-V3.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Universal-Script/refs/heads/main/Wall-Hop-V3.lua", true))()
     end
 })
 Tabs.Main3:AddButton({
     Title="Wall Hop V4",
     Callback=function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Universal-Script/refs/heads/main/Wall-Hop-V4.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKTD-Roblox/Universal-Script/refs/heads/main/Wall-Hop-V4.lua", true))()
     end
 })
